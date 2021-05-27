@@ -4,44 +4,53 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-@Entity
+
 @Data
+@Entity
+@EqualsAndHashCode(callSuper = false)
 @Table(name="job_seekers")
-public class JobSeeker {
-	@Id
-	@Column(name="jobseeker_user_id",nullable=false)
-	private int jobSeekerId;
+@AllArgsConstructor
+@NoArgsConstructor
+public class JobSeeker extends User {
 	
-	@Column(name="jobseeker_first_name",nullable=false)
+	
+	@Column(name="name")
 	private String firstName;
 	
-	@Column(name="jobseeker_last_name",nullable=false)
+	@Column(name="surname")
 	private String lastName;
 	
-	@Column(name="jobseeker_national_id",nullable=false)
+	@Column(name="national_identity")
 	private String nationalId;
 	
-	@Column(name="job_seeker_birth_date",nullable=false)
+	@Column(name="birth_year")
 	private Date birthDate;
 	
-	public JobSeeker() {
-		
-		
-	}
+	@Column(name="verify")
+	private boolean verify=false;
 
-	public JobSeeker(int jobSeekerId, String firstName, String lastName, String nationalId, Date birthDate) {
-		super();
-		this.jobSeekerId = jobSeekerId;
+	public JobSeeker(String email, String password, String firstName, String lastName, String nationalId,
+			Date birthDate, boolean verify) {
+		super(email, password);
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.nationalId = nationalId;
 		this.birthDate = birthDate;
+		this.verify = verify;
 	}
+	
+	
+	
 	
 	
 	

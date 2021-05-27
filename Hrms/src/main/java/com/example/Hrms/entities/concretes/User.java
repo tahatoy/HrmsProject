@@ -3,60 +3,52 @@ package com.example.Hrms.entities.concretes;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table (name="users")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name="users")
 public class User {
 	
-
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
-	private int id;
-	
-	@Column(name="email")
+	private Integer id;
+
+	@Column(name="email", nullable = false, unique = true)
 	private String email;
 	
-	@Column(name="password")
+	@Column(name="password", nullable = false)
 	private String password;
 	
-	public User() {}
-	
-	public User(int id, String email, String password) {
+	@Column(name="password_repeat")
+	private String passwordRepeat;
+
+	public User(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+
+	public User(String email, String password, String passwordRepeat) {
 		super();
-		this.id = id;
 		this.email = email;
 		this.password = password;
+		this.passwordRepeat = passwordRepeat;
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
+	
 	
 	
 	
