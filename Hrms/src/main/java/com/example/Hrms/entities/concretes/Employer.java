@@ -5,16 +5,19 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Table(name="Employers")
-public class Employer {
+public class Employer extends User {
 
-	@Id
-	@Column(name="employer_id",nullable=false)
-	private int userId;
 	
 	@Column(name="company_name",nullable=false)
 	private String companyName;
@@ -25,16 +28,19 @@ public class Employer {
 	@Column(name="phone_number",nullable=false)
 	private String phoneNumber;
 	
-	public Employer() {
-		
-	}
+	@Column(name="email_verify")
+	private boolean emailVerify=false;
 
-	public Employer(int userId, String companyName, String website, String phoneNumber) {
-		super();
-		this.userId = userId;
+	public Employer(String email, String password, String companyName, String website, String phoneNumber,boolean emailVerify) {
+		super(email, password);
 		this.companyName = companyName;
 		this.website = website;
 		this.phoneNumber = phoneNumber;
+		this.emailVerify=emailVerify;
 	}
+	
+	
+
+
 	
 }

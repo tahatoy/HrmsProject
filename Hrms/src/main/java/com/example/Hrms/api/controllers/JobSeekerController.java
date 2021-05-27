@@ -34,7 +34,7 @@ public class JobSeekerController {
 		return jobSeekerService.getAll();
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/register")
 	public Result register(@RequestBody JobSeeker jobSeeker) {
 		return jobSeekerService.register(jobSeeker);
 	}
