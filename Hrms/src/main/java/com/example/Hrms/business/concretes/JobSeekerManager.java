@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Hrms.business.abstracts.JobSeekerService;
-import com.example.Hrms.core.EmailService;
-import com.example.Hrms.core.IdentityValidationService;
+import com.example.Hrms.core.checkersandvalidators.abstracts.EmailService;
+import com.example.Hrms.core.checkersandvalidators.abstracts.IdentityValidationService;
 import com.example.Hrms.core.utilities.DataResult;
 import com.example.Hrms.core.utilities.ErrorResult;
 import com.example.Hrms.core.utilities.Result;

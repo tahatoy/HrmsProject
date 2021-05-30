@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.Hrms.business.abstracts.JobService;
+import com.example.Hrms.core.checkersandvalidators.abstracts.JobCheckService;
 import com.example.Hrms.core.utilities.DataResult;
 import com.example.Hrms.core.utilities.Result;
 import com.example.Hrms.core.utilities.SuccessDataResult;
@@ -16,11 +17,16 @@ import com.example.Hrms.entities.concretes.Job;
 public class JobManager implements JobService {
 
 	private JobDao jobDao;
+	private JobCheckService[] jobCheckService;
 	
-	public JobManager(JobDao jobDao) {
+	
+	public JobManager(JobDao jobDao, JobCheckService[] jobCheckService) {
 		super();
 		this.jobDao = jobDao;
+		this.jobCheckService = jobCheckService;
 	}
+
+	
 
 	@Override
 	public DataResult<List<Job>> getAll() {
@@ -29,8 +35,13 @@ public class JobManager implements JobService {
 
 	@Override
 	public Result add(Job job) {
-		this.jobDao.save(job);
-		return new SuccessResult("İşlem başarılı");
+		 for (JobCheckService jobCheckService : jobCheckService) {
+	            if (jobCheckService.checkJob(job).isSuccess() == false) {
+	                return jobCheckService.checkJob(job);
+	            }
+	        }
+	        this.jobDao.save(job);
+	        return new SuccessResult("İşlem başarılı");
 	}
 
 	  @Override
@@ -53,6 +64,6 @@ public class JobManager implements JobService {
 	        Job job = this.jobDao.findByIdAndActiveTrue(id);
 	        job.setActive(value);
 	        this.jobDao.save(job);
-	        return new SuccessResult("Value setted to " + value + " successfully.");
+	        return new SuccessResult("Aktiflik durumu başarıyla değiştirildi.");
 	    }
 	}

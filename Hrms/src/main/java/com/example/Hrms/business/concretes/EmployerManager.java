@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Hrms.business.abstracts.EmployerService;
-import com.example.Hrms.core.EmailService;
-import com.example.Hrms.core.EmployerCheckService;
+import com.example.Hrms.core.checkersandvalidators.abstracts.EmailService;
+import com.example.Hrms.core.checkersandvalidators.abstracts.EmployerCheckService;
 import com.example.Hrms.core.utilities.DataResult;
 import com.example.Hrms.core.utilities.ErrorResult;
 import com.example.Hrms.core.utilities.Result;

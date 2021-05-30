@@ -1,4 +1,4 @@
-package com.example.Hrms.core;
+package com.example.Hrms.core.checkersandvalidators.abstracts;
 
 import com.example.Hrms.core.utilities.Result;
 
