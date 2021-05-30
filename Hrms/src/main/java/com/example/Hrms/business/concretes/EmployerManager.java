@@ -2,10 +2,12 @@ package com.example.Hrms.business.concretes;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Hrms.business.abstracts.EmployerService;
 import com.example.Hrms.core.EmailService;
+import com.example.Hrms.core.EmployerCheckService;
 import com.example.Hrms.core.utilities.DataResult;
 import com.example.Hrms.core.utilities.ErrorResult;
 import com.example.Hrms.core.utilities.Result;
@@ -14,18 +16,22 @@ import com.example.Hrms.core.utilities.SuccessResult;
 import com.example.Hrms.dataAccess.abstracts.EmployerDao;
 import com.example.Hrms.entities.concretes.Employer;
 
+
 @Service
 public class EmployerManager implements EmployerService {
 
 	private EmployerDao	empolyerDao;
 	private EmailService emailService;
+	private EmployerCheckService employerCheckService; 
 	
-	public EmployerManager(EmployerDao empolyerDao,EmailService emailService) {
+	@Autowired
+	public EmployerManager(EmployerDao empolyerDao, EmailService emailService,
+			EmployerCheckService employerCheckService) {
 		super();
 		this.empolyerDao = empolyerDao;
-		this.emailService=emailService;
+		this.emailService = emailService;
+		this.employerCheckService = employerCheckService;
 	}
-
 
 
 	@Override
@@ -34,6 +40,7 @@ public class EmployerManager implements EmployerService {
 	}
 
 
+	
 	@Override
 	public Result register(Employer employer) {
 		if(this.empolyerDao.existsByEmail(employer.getEmail())==true)
@@ -46,10 +53,14 @@ public class EmployerManager implements EmployerService {
 		emailService.send("E-posta gönderildi.");//E postanın gönderilip onaylandığı simule edildi
 		employer.setEmailVerify(true);
 		
-		if(employer.isEmailVerify()==true)
+		
+		
+		if(employer.isEmailVerify()==true 
+		// && employerCheckService.checkEmployer(employer).isSuccess()==true admin onayı bekleniyor eğer email ve admin onaylarsa kullancı eklenecek
+			)
 			this.empolyerDao.save(employer);
 		
-		return new SuccessResult("Kayıt başarılı");
+			return new SuccessResult("Kayıt başarılı");
 		
 	}
 	

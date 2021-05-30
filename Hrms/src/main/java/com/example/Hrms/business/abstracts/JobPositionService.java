@@ -9,4 +9,5 @@ import com.example.Hrms.entities.concretes.JobPosition;
 public interface JobPositionService {
 	DataResult<List<JobPosition>> getAll();	
 	Result add(JobPosition jobPosition);
+	
 }

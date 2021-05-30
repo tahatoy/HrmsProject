@@ -25,5 +25,10 @@ public class SystemUserManager implements SystemUserService{
 		
 		return this.systemUserDao.findAll();
 	}
+	
+	@Override
+	public boolean validateEmployer() {
+		return true;
+	}
 
 }

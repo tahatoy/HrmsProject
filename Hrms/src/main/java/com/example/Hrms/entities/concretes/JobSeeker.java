@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Table(name="job_seekers")
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class JobSeeker extends User {
 	
 	
@@ -39,19 +40,6 @@ public class JobSeeker extends User {
 	@Column(name="verify")
 	private boolean verify=false;
 
-	public JobSeeker(String email, String password, String firstName, String lastName, String nationalId,
-			Date birthDate, boolean verify) {
-		super(email, password);
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.nationalId = nationalId;
-		this.birthDate = birthDate;
-		this.verify = verify;
-	}
-	
-	
-	
-	
-	
+		
 	
 }

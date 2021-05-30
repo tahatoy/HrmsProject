@@ -40,4 +40,6 @@ public class JobPositionManager implements JobPositionService{
 		return new SuccessResult("Pozisyon başarıyla sisteme eklendi");
 	}
 
+
+
 }
