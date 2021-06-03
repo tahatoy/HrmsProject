@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.Hrms.entities.concretes.SystemUser;
 
 public interface SystemUserDao extends JpaRepository<SystemUser, Integer> {
-
+	boolean existsByEmail(String email);
 }

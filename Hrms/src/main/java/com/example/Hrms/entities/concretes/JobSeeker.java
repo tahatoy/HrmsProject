@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,24 +22,25 @@ import lombok.NoArgsConstructor;
 @Table(name="job_seekers")
 @AllArgsConstructor
 @NoArgsConstructor
+@PrimaryKeyJoinColumn(name = "id", referencedColumnName="id")
 
 public class JobSeeker extends User {
 	
 	
-	@Column(name="name")
+	@Column(name="first_name")
 	private String firstName;
 	
-	@Column(name="surname")
+	@Column(name="last_name")
 	private String lastName;
 	
 	@Column(name="national_identity")
 	private String nationalId;
 	
 	@Column(name="birth_year")
-	private Date birthDate;
+	private String birthYear;
 	
-	@Column(name="verify")
-	private boolean verify=false;
+	@Column(name="status")
+	private boolean status;
 
 		
 	

@@ -1,9 +1,0 @@
-package com.example.Hrms.core.checkersandvalidators.abstracts;
-
-import com.example.Hrms.core.utilities.Result;
-import com.example.Hrms.entities.concretes.Employer;
-
-public interface EmployerCheckService {
-	Result checkEmployer(Employer employer);
-
-}

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.Hrms.business.abstracts.JobSeekerService;
 import com.example.Hrms.core.utilities.DataResult;
 import com.example.Hrms.core.utilities.Result;
+import com.example.Hrms.entities.concretes.Employer;
 import com.example.Hrms.entities.concretes.JobSeeker;
+import com.example.Hrms.entities.dtos.JobSeekerRegisterDto;
 
 @RestController
 @RequestMapping("/api/jobseekers")
@@ -35,7 +37,14 @@ public class JobSeekerController {
 	}
 
 	@PostMapping("/register")
-	public Result register(@RequestBody JobSeeker jobSeeker) {
+	public Result register(@RequestBody JobSeekerRegisterDto jobSeeker) {
 		return jobSeekerService.register(jobSeeker);
 	}
+	
+	@PostMapping("/update")
+	public Result update(@RequestBody JobSeeker jobSeeker, int id) {
+		return this.jobSeekerService.update(jobSeeker, id);
+	}
+	 
+	
 }
