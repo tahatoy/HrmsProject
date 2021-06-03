@@ -13,6 +13,7 @@ import com.example.Hrms.business.abstracts.EmployerService;
 import com.example.Hrms.core.utilities.DataResult;
 import com.example.Hrms.core.utilities.Result;
 import com.example.Hrms.entities.concretes.Employer;
+import com.example.Hrms.entities.dtos.EmployerRegisterDto;
 
 @RestController
 @RequestMapping("/api/employers")
@@ -36,8 +37,13 @@ public class EmployerController {
 	}
 	
 	@PostMapping("/register")
-	public Result register(@RequestBody Employer employer) {
-		return employerService.register(employer);
+	public Result register(@RequestBody EmployerRegisterDto employer) {
+		return this.employerService.register(employer);
+	}
+	
+	@PostMapping("/update")
+	public Result update(@RequestBody Employer employer, int id) {
+		return this.employerService.update(employer, id);
 	}
 	
 	

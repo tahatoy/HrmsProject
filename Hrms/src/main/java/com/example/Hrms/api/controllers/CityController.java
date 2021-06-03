@@ -9,34 +9,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Hrms.business.abstracts.SystemUserService;
+import com.example.Hrms.business.abstracts.CityService;
 import com.example.Hrms.core.utilities.DataResult;
 import com.example.Hrms.core.utilities.Result;
-import com.example.Hrms.entities.concretes.SystemUser;
+import com.example.Hrms.entities.concretes.City;
 
 @RestController
-@RequestMapping("/api/systemusers")
-public class SystemUserController {
+@RequestMapping("/api/cities")
+public class CityController {
 
-	private SystemUserService systemUserService;
-	
-	
-	
+	private CityService cityService;
+
 	@Autowired
-	public SystemUserController(SystemUserService systemUserService) {
+	public CityController(CityService cityService) {
 		super();
-		this.systemUserService = systemUserService;
+		this.cityService = cityService;
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<SystemUser>> getAll(){
-		return this.systemUserService.getAll();
+	public DataResult<List<City>> getAll(){
+		return this.cityService.getAll();
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody SystemUser systemUser) {
-		return systemUserService.add(systemUser);
-		 
+	public Result add(@RequestBody City city) {
+		return this.cityService.add(city);
 	}
+	
+	
 	
 }
