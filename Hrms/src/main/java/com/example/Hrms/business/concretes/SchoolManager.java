@@ -12,6 +12,7 @@ import com.example.Hrms.core.utilities.SuccessDataResult;
 import com.example.Hrms.core.utilities.SuccessResult;
 import com.example.Hrms.dataAccess.abstracts.SchoolDao;
 import com.example.Hrms.entities.concretes.School;
+import com.example.Hrms.entities.concretes.WorkExperience;
 
 @Service
 public class SchoolManager implements SchoolService {
@@ -41,30 +42,12 @@ public class SchoolManager implements SchoolService {
 	}
 
 	@Override
-	public Result delete(int id) {
-		this.schoolDao.deleteById(id);
-		return new SuccessResult("Okul başarıyla silindi");
+	public DataResult<List<School>> getByCurriculumVitae_CurriculumVitaeIdOrderByEndDateDesc(int curriculumVitaeId) {
+		return new SuccessDataResult<List<School>>(this.schoolDao.getByCurriculumVitae_CurriculumVitaeIdOrderByEndDateDesc(curriculumVitaeId),"Okunan okullar tarihe göre sıralandı");
+
 	}
 
-	@Override
-	public Result update(School school) {
-		this.schoolDao.save(school);
-		return new SuccessResult("Okul başarıyla güncellendi");
-	}
 
-	@Override
-	public DataResult<List<School>> getAllOrderByEndDateDesc() {
-		return new SuccessDataResult<List<School>>(this.schoolDao.findAllByOrderByEndDateDesc(), "Okullar en güncel haliyle sıralandı");
-	}
 
-	@Override
-	public DataResult<List<School>> getByEndDateIsNull() {
-		return new SuccessDataResult<List<School>>(this.schoolDao.findByEndDateIsNull(), "Devam eden okullar başarıyla listelendi");
-	}
-
-	@Override
-	public DataResult<List<School>> getByEndDateIsNotNullOrderByEndDateDesc() {
-		return new SuccessDataResult<List<School>>(this.schoolDao.findByEndDateIsNotNullOrderByEndDateDesc(), "Mezun olunan okullar en güncel haliyle listelendi");
-	}
-
+	
 }

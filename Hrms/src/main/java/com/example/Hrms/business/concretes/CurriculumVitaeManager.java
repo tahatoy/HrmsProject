@@ -52,4 +52,9 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 		return new SuccessDataResult<>("Fotograf basariyla kaydedildi.");
 	}
 
+	@Override
+	public DataResult<CurriculumVitae> getByJobSeekerId(int id) {
+		return new SuccessDataResult<CurriculumVitae>(this.curriculumVitaeDao.getByJobSeekerId(id),"Adaya ait cv listelendi");
+	}
+
 }
