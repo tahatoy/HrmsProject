@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name="curriculum_vitaes")
 
+
 public class CurriculumVitae {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)

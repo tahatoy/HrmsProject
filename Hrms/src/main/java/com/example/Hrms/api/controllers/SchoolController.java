@@ -31,7 +31,7 @@ public class SchoolController {
 	public DataResult<List<School>> getAll(){
 		return this.schoolService.getAll();
 	}
-	
+	/*
 	@GetMapping("/getallorderbyenddatedesc")
 	public DataResult<List<School>> getAllOrderByEndDateDesc() {
 		return this.schoolService.getAllOrderByEndDateDesc();
@@ -46,10 +46,15 @@ public class SchoolController {
 	public DataResult<List<School>>  getByEndDateIsNotNullOrderByEndDateDesc() {
 		return (this.schoolService.getByEndDateIsNotNullOrderByEndDateDesc());
 	}
-	
+	*/
 	@PostMapping("/add")
 	public Result add(@RequestBody School school) {
 		return this.schoolService.add(school);
+	}
+	
+	@GetMapping("/getByCurriculumVitae_IdOrderByEndDateDesc")
+	public DataResult<List<School>> getByCurriculumVitae_IdOrderByEndDateDesc(int curriculumVitaeId){
+		return this.schoolService.getByCurriculumVitae_CurriculumVitaeIdOrderByEndDateDesc(curriculumVitaeId);
 	}
 	
 

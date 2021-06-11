@@ -29,7 +29,7 @@ private WorkExperienceService workExperienceService;
 	public DataResult<List<WorkExperience>> getAll() {
 		return this.workExperienceService.getAll();
 	}
-	
+	/*
 	@GetMapping("/getallorderbyenddatedesc")
 	public DataResult<List<WorkExperience>> getAllOrderByEndDateDesc() {
 		return this.workExperienceService.getAllOrderByEndDateDesc();
@@ -44,9 +44,14 @@ private WorkExperienceService workExperienceService;
 	public DataResult<List<WorkExperience>> getByEndDateIsNotNullOrderByEndDateDesc() {
 		return this.workExperienceService.getByEndDateIsNotNullOrderByEndDateDesc();
 	}
-	
+	*/
 	@PostMapping("/add")
 	public Result add( @RequestBody WorkExperience workExperience) {
 		return this.workExperienceService.add(workExperience);
+	}
+	
+	@GetMapping("/getByCurriculumVitae_IdOrderByEndDateDesc")
+	public DataResult<List<WorkExperience>> getByCurriculumVitae_IdOrderByEndDateDesc(int curriculumVitaeId){
+		return this.workExperienceService.getByCurriculumVitae_CurriculumVitaeIdOrderByEndDateDesc(curriculumVitaeId);
 	}
 }

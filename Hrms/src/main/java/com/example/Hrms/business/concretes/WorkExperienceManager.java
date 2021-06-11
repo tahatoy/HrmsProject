@@ -32,36 +32,15 @@ public class WorkExperienceManager implements WorkExperienceService {
 	}
 
 	@Override
-	public Result add(WorkExperience schoolDegree) {
-		this.workExperienceDao.save(schoolDegree);
-		return new SuccessDataResult<WorkExperience>("Work experience added succesfully.");
+	public Result add(WorkExperience workExperience) {
+		this.workExperienceDao.save(workExperience);
+		return new SuccessDataResult<WorkExperience>("İş deneyimi başarıyla eklendi.");
 	}
 
 	@Override
-	public Result delete(int id) {
-		this.workExperienceDao.deleteById(id);
-		return new SuccessDataResult<WorkExperience>("Work experience deleted succesfully.");
+	public DataResult<List<WorkExperience>>getByCurriculumVitae_CurriculumVitaeIdOrderByEndDateDesc(int curriculumVitaeId) {
+		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.getByCurriculumVitae_CurriculumVitaeIdOrderByEndDateDesc(curriculumVitaeId),"Deneyimler tarihe göre sıralandı");
 	}
 
-	@Override
-	public Result update(WorkExperience schoolDegree) {
-		this.workExperienceDao.save(schoolDegree);
-		return new SuccessDataResult<WorkExperience>("Work experience updated succesfully.");
-	}
-	
-	@Override
-	public DataResult<List<WorkExperience>> getAllOrderByEndDateDesc() {
-		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.findAllByOrderByEndDateDesc(), "Work experiences listed and ordered by end date (Desc) succesfully.");
-	}
-
-	@Override
-	public DataResult<List<WorkExperience>> getByEndDateIsNull() {
-		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.findByEndDateIsNull(), "Work experiences in progress listed succesfully.");
-	}
-
-	@Override
-	public DataResult<List<WorkExperience>> getByEndDateIsNotNullOrderByEndDateDesc() {
-		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.findByEndDateIsNotNullOrderByEndDateDesc(), "Finished work experiences listed and ordered by end date (Desc) succesfully.");
-	}
 	
 }
